@@ -661,3 +661,11 @@ main.page-request ~ .mobile-cta { display: none; }
   .diff-them-head { font-size: .78rem; }
   .diff-them { font-size: .8rem; }
 }
+
+/* Work With Us: pay highlights */
+.wwu-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1.6rem 0 .6rem; }
+.wwu-stats div { background: var(--sage-soft); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.wwu-stats strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; color: var(--forest); line-height: 1.1; }
+.wwu-stats span { display: block; font-size: .86rem; color: var(--ink); margin-top: .3rem; line-height: 1.4; }
+.wwu-stats + .svc__fine { margin-bottom: 1.6rem; }
+@media (max-width: 640px) { .wwu-stats { grid-template-columns: 1fr; } }
