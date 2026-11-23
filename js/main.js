@@ -126,6 +126,24 @@
     btn.addEventListener('click', function () { set(!wrap.classList.contains('is-diff')); });
   });
 
+  /* ---- Lazy-load the Jobber estimate form when it nears the screen ---- */
+  document.querySelectorAll('.jobber-lazy').forEach(function (box) {
+    var loaded = false;
+    function load() {
+      if (loaded) return; loaded = true;
+      var s = document.createElement('script');
+      s.src = box.getAttribute('data-jobber-src');
+      s.setAttribute('clienthub_id', box.getAttribute('data-clienthub-id'));
+      s.setAttribute('form_url', box.getAttribute('data-form-url'));
+      s.onload = function () { var l = box.querySelector('.jobber-lazy__loading'); if (l) l.remove(); };
+      box.appendChild(s);
+    }
+    if ('IntersectionObserver' in window) {
+      var o = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { load(); o.disconnect(); } }, { rootMargin: '600px 0px' });
+      o.observe(box);
+    } else { load(); }
+  });
+
   /* ---- Footer year ---- */
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
